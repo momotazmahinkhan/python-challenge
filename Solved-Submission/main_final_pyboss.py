@@ -1,5 +1,6 @@
 import os
 import csv
+import USstateabv
 
 pyboss_csv = os.path.join("..", "Resources", "employee_data.csv")
 
@@ -35,9 +36,10 @@ with open(pyboss_csv, 'r') as csvfile:
         converted_SSN =  "*** - **" + str(SSN[7:])
         New_SSN.append(converted_SSN)
 
-        # Add Emp_ID
-        State.append(row[4])
-
+        # Add States
+        s = row[4]
+        abv = (USstateabv.USstateabv[s])
+        State.append(abv)
         # Zip lists together
 NewEmployee_csv = zip(Emp_ID, First_Name, Last_Name, Date_of_Birth, New_SSN, State)
 
